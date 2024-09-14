@@ -19,6 +19,15 @@ using Unity.Profiling;
 
 namespace UnityEditor.ShaderGraph.Drawing
 {
+    public class MySelectionDragger2 : SelectionDragger {
+
+        protected new void OnMouseMove(MouseMoveEvent e)
+        {
+            Debug.Log("...........mouse move");
+            base.OnMouseMove(e);
+        }
+    }
+
     [Serializable]
     class FloatingWindowsLayout
     {
@@ -207,9 +216,10 @@ namespace UnityEditor.ShaderGraph.Drawing
                 { name = "GraphView", viewDataKey = "MaterialGraphView" };
                 m_GraphView.SetupZoom(0.05f, 8);
                 m_GraphView.AddManipulator(new ContentDragger());
-                m_GraphView.AddManipulator(new SelectionDragger());
+                m_GraphView.AddManipulator(new MySelectionDragger());
                 m_GraphView.AddManipulator(new RectangleSelector());
                 m_GraphView.AddManipulator(new ClickSelector());
+                m_GraphView.AddManipulator(new MyEdgeManipulator());
                 m_GraphView.RegisterCallback<KeyDownEvent>(OnKeyDown);
                 // Bugfix 1312222. Running 'ResetSelectedBlockNodes' on all mouse up interactions will break selection
                 // after changing tabs. This was originally added to fix a bug with middle-mouse clicking while dragging a block node.

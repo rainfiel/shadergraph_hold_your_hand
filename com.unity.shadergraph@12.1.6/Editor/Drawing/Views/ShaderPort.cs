@@ -20,7 +20,7 @@ namespace UnityEditor.ShaderGraph.Drawing
             var port = new ShaderPort(Orientation.Horizontal, slot.isInputSlot ? Direction.Input : Direction.Output,
                 slot.isInputSlot ? Capacity.Single : Capacity.Multi, null)
             {
-                m_EdgeConnector = new EdgeConnector<Edge>(connectorListener),
+                m_EdgeConnector = new MyEdgeConnector<Edge>(connectorListener),
             };
             port.AddManipulator(port.m_EdgeConnector);
             port.slot = slot;
